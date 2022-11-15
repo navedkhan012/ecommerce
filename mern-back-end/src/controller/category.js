@@ -4,8 +4,12 @@ const Category = require("../models/category");
 exports.createCategory = (req, res) => {
   const categoryObj = {
     name: req.body.name,
-    slug: slugify(req.body.name),
+    slug: slugify(req.body.name)
   };
+
+  if(req.file.filename){
+    categoryObj.categoryImage = req.file.filename
+  }
   if (req.body.parentId) {
     categoryObj.parentId = req.body.parentId;
   }
@@ -34,6 +38,7 @@ function createCategories(categories, parentId = null) {
       id: cate._id,
       name: cate.name,
       slug: cate.slug,
+      
       children: createCategories(categories, cate._id),
     });
   }
