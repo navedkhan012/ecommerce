@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import {   useNavigate } from "react-router-dom";
 
 function SignIn() {
-  const [email, setEmail] = useState("");
+  const [emails, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
