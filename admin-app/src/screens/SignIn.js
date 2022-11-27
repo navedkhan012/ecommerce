@@ -2,7 +2,7 @@ import { Form, Container, Row, Col, Button } from "react-bootstrap";
 import { login } from "../actions/auth";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import {   useNavigate } from "react-router-dom";
 
 function SignIn() {
   const [email, setEmail] = useState("");
@@ -13,7 +13,6 @@ function SignIn() {
 
   const onFromSubmit = (e) => {
     e.preventDefault();
-    console.log("clicked");
     dispatch(login({ email: "Naved@gmail.com", password: "123456" }));
     alert("redirect start");
     navigate("/", { replace: true });
@@ -22,9 +21,9 @@ function SignIn() {
   useEffect(() => {
     let LoggedIn = localStorage.getItem("token");
     if (LoggedIn) {
-      return navigate("/");
+      return navigate("/", { replace: true });
     }
-  }, []);
+  }, [navigate]);
 
   return (
     <Container className="mt-4">

@@ -1,6 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
+import { Navigate, useNavigate } from "react-router-dom";
 function SignUp() {
+
+  let navigate = useNavigate();
+  useEffect(() => {
+    let LoggedIn = localStorage.getItem("token");
+    if (LoggedIn) {
+      return navigate("/", { replace: true });
+    }
+  }, []);
+
   return (
     <Container className="mt-4">
       <Row className="justify-content-md-center">
