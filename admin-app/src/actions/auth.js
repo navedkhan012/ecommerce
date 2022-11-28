@@ -26,3 +26,26 @@ export const login = (logindata) => async (dispatch) => {
     });
   }
 };
+
+
+export const isUserLoggedIn = (data) => async(dispatch) => {
+  const token = localStorage.getItem('token')
+  const user = JSON.parse(localStorage.getItem('user'))
+  if(token){
+    dispatch({
+      type: actions.LOGIN_SUCCESS,
+      payload: {
+        token,
+        user,
+      },
+    });
+  }else{
+    dispatch({
+      type: actions.LOGIN_FAILS,
+      payload: {
+        authenticate:false,
+        message: "user need auth"
+      },
+    });
+  }
+}

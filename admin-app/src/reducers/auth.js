@@ -12,11 +12,12 @@ const initState = {
 };
 
 const loginReducer = (state = initState, action) => {
+  console.log('action', action)
   switch (action.type) {
     case actions.LOGIN_REQUEST:
       return {
-        state,
-        authenticating: true,
+        ...state,
+        ...action.payload
       };
 
     case actions.LOGIN_SUCCESS:

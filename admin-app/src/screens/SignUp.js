@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
-import { Navigate, useNavigate } from "react-router-dom";
+// import { Navigate, useNavigate } from "react-router-dom";
 function SignUp() {
 
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
   useEffect(() => {
     let LoggedIn = localStorage.getItem("token");
     if (LoggedIn) {
-      return navigate("/", { replace: true });
+      // return navigate("/", { replace: true });
     }
   }, []);
 

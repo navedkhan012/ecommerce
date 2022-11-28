@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./screens/Home";
 import SignIn from "./screens/SignIn";
@@ -13,18 +13,16 @@ import PrivateRoute from "./components/PrivateRoute";
 const App = () => {
   return (
     <Provider store={store}>
-      <BrowserRouter>
+      <Router>
         <div>
           <Header></Header>
-          <Routes>
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/signin" element={<SignIn />} />
-            <Route exact path="/" element={<PrivateRoute />}>
-              <Route exact path="/" element={<Home />} />
-            </Route>
-          </Routes>
+        
+            <Route path="/signup" component={SignUp } />
+            <Route path="/signin" component={SignIn } />
+            <PrivateRoute path="/" component={Home } exact />
+           
         </div>
-      </BrowserRouter>
+      </Router>
     </Provider>
   );
 };

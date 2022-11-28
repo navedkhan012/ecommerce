@@ -1,29 +1,36 @@
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
-import { login } from "../actions/auth";
-import { useDispatch } from "react-redux";
+import { isUserLoggedIn, login } from "../actions/auth";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import {   useNavigate } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 function SignIn() {
   const [emails, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
-  let navigate = useNavigate();
+  const auth = useSelector(state => state.login)
+  // let navigate = useNavigate();
 
   const onFromSubmit = (e) => {
     e.preventDefault();
     dispatch(login({ email: "Naved@gmail.com", password: "123456" }));
     alert("redirect start");
-    navigate("/", { replace: true });
+    // navigate("/", { replace: true });
   };
 
   useEffect(() => {
-    let LoggedIn = localStorage.getItem("token");
-    if (LoggedIn) {
-      return navigate("/", { replace: true });
+    if(!auth.authenticate){
+      dispatch(isUserLoggedIn())
     }
-  }, [navigate]);
+    // let LoggedIn = localStorage.getItem("token");
+    // if (LoggedIn) {
+    //   // return navigate("/", { replace: true });
+    // }
+  }, []);
+  if(auth.authenticate){
+    return <Redirect to="/"/>
+  }
 
   return (
     <Container className="mt-4">
