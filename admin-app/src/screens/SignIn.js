@@ -1,7 +1,7 @@
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
-import { isUserLoggedIn, login } from "../actions/auth";
+import {   login } from "../actions/auth";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import {   useState } from "react";
 import { Redirect } from "react-router-dom";
 
 function SignIn() {
@@ -10,24 +10,14 @@ function SignIn() {
 
   const dispatch = useDispatch();
   const auth = useSelector(state => state.login)
-  // let navigate = useNavigate();
 
   const onFromSubmit = (e) => {
     e.preventDefault();
     dispatch(login({ email: "Naved@gmail.com", password: "123456" }));
     alert("redirect start");
-    // navigate("/", { replace: true });
   };
 
-  useEffect(() => {
-    if(!auth.authenticate){
-      dispatch(isUserLoggedIn())
-    }
-    // let LoggedIn = localStorage.getItem("token");
-    // if (LoggedIn) {
-    //   // return navigate("/", { replace: true });
-    // }
-  }, []);
+  
   if(auth.authenticate){
     return <Redirect to="/"/>
   }
