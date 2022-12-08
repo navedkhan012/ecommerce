@@ -8,6 +8,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import {   useDispatch, useSelector } from "react-redux";
 import PrivateRoute from "./components/PrivateRoute";
 import { isUserLoggedIn } from "./actions/auth";
+import Orders from "./screens/Orders";
+import Products from "./screens/Products";
 
 // window.store = store;
 const App = () => {
@@ -23,9 +25,11 @@ const App = () => {
       <Router>
         <div>
           <Header></Header>
-            <Route path="/signup" component={SignUp } />
-            <Route path="/signin" component={SignIn } />
-            <PrivateRoute path="/" component={Home } exact />
+            <Route path="/signup" component={SignUp} />
+            <Route path="/signin" component={SignIn} />
+            <PrivateRoute path="/" component={Home} exact />
+            <PrivateRoute path="/products" component={Products}   />
+            <PrivateRoute path="/orders" component={Orders}  />
         </div>
       </Router>
     </>

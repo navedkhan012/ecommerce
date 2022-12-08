@@ -1,11 +1,27 @@
-import React, { useEffect } from "react";
+import React  from "react";
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { register } from "../actions/register";
 function SignUp() {
 
   const auth = useSelector(state => state.login)
 
+  const registerAction = useSelector(state => state)
+
+  console.log('registerAction',registerAction.register);
+  
+  const dispatch = useDispatch()
+
+  const registerUser = (e) =>{
+    e.preventDefault();
+    dispatch(register({
+      firstName: "abc",
+      lastName:"acd",
+      email:"acb1@gmail.com",
+      password: "123456"
+    }))
+  }
 
   if(auth.authenticate){
     return <Redirect to="/"/>
@@ -34,10 +50,11 @@ function SignUp() {
             </Form.Group>
 
             <div className="d-flex justify-content-end">
-              <Button variant="primary" type="submit">
-                Submit
+              <Button variant="primary" type="submit" onClick={registerUser}>
+              { registerAction.register.loading ? 'Loading' : 'Submit'}
               </Button>
             </div>
+            {registerAction.register.error ?? registerAction.register.error}
           </Form>
         </Col>
       </Row>

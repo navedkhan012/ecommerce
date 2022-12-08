@@ -17,7 +17,7 @@ export const login = (logindata) => async (dispatch) => {
         user,
       },
     });
-    localStorage.setItem("token", JSON.stringify(token));
+    localStorage.setItem("token",token);
     localStorage.setItem("user", JSON.stringify(user));
   } else {
     dispatch({
@@ -26,6 +26,8 @@ export const login = (logindata) => async (dispatch) => {
     });
   }
 };
+
+
 
 
 export const isUserLoggedIn = (data) => async(dispatch) => {
@@ -48,4 +50,35 @@ export const isUserLoggedIn = (data) => async(dispatch) => {
       },
     });
   }
+}
+
+export const signoutuser = () => async (dispatch) => {
+  dispatch({
+    type: actions.LOGOUT_REQUEST
+  })
+  const token = localStorage.getItem('token')   
+  console.log('token>>>>>>', token)
+  try {
+    const res = await axios(`/api/signout`, {
+      method: 'POST',
+      headers: {
+        authorization: token
+      },
+    }) 
+  localStorage.clear();
+    dispatch({
+      type: actions.LOGOUT_SUCCESS,
+      payload: {
+        message: res.data
+      }
+    })
+  } catch (error) {
+    dispatch({
+      type: actions.LOGOUT_FAILS,
+      payload: {
+        payload: { error: error },
+      }
+    })
+  }
+  
 }

@@ -12,7 +12,6 @@ const initState = {
 };
 
 const loginReducer = (state = initState, action) => {
-  console.log('action', action)
   switch (action.type) {
     case actions.LOGIN_REQUEST:
       return {
@@ -32,6 +31,11 @@ const loginReducer = (state = initState, action) => {
       return {
         error: action.payload.error,
       };
+
+      case actions.LOGOUT_REQUEST:
+        return {
+          ...initState,
+        };
 
     default:
       return state;

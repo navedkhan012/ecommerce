@@ -2,13 +2,13 @@ import React from "react";
 import { Col, Container, Row, ListGroup } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import Layout from "./Layout";
-
-function Home() {
+function Products() {
   return (
     <Layout>
-      <h2>Home</h2>
-    </Layout>
+    <h2>products</h2>
+  </Layout>
+
     )
 }
 
-export default Home;
+export default Products;
