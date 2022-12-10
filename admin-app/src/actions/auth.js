@@ -57,7 +57,6 @@ export const signoutuser = () => async (dispatch) => {
     type: actions.LOGOUT_REQUEST
   })
   const token = localStorage.getItem('token')   
-  console.log('token>>>>>>', token)
   try {
     const res = await axios(`/api/signout`, {
       method: 'POST',

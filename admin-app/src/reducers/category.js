@@ -8,20 +8,20 @@ const initState = {
 
 export const categoryReducer = (state = initState, action) => {
   switch (action.type) {
-    case actions.CATEGORY_REQUEST:
+    case actions.ADD_CATEGORY_REQUEST:
       return {
         ...state,
         loading: true
       }
 
-    case actions.CATEGORY_SUCCESS:
+    case actions.ADD_CATEGORY_SUCCESS:
       return {
         ...state,
         categories: action.payload.categories,
         loading: false
       }
 
-    case actions.REGISTER_FAILS:
+    case actions.ADD_CATEGORY_FAILS:
       return {
         ...state,
         error: action.payload.error,

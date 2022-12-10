@@ -38,7 +38,7 @@ export const addCategory = (form) => async(dispatch) => {
         authorization: token
       },
     })
-    console.log('res', res);
+    console.log('res.data post', res.data);
   dispatch({
     type: actions.ADD_CATEGORY_SUCCESS,
     payload:{ 
