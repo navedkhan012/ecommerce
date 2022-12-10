@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.post("/signin", signInValidator, isValidationResult, signin);
 router.post("/signup", signInValidator, signup);
-router.post("/signout", requireSignIn, signout);
+router.post("/signout",   signout);
 
 
 module.exports = router;

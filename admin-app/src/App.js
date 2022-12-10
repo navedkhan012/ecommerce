@@ -10,6 +10,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import { isUserLoggedIn } from "./actions/auth";
 import Orders from "./screens/Orders";
 import Products from "./screens/Products";
+import Category from "./screens/Category";
 
 // window.store = store;
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
             <Route path="/signup" component={SignUp} />
             <Route path="/signin" component={SignIn} />
             <PrivateRoute path="/" component={Home} exact />
+            <PrivateRoute path="/category" component={Category}   />
             <PrivateRoute path="/products" component={Products}   />
             <PrivateRoute path="/orders" component={Orders}  />
         </div>

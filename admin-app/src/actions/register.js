@@ -2,7 +2,6 @@ import * as actions from "../constants/index";
 import axios from "axios";
 
 export const register = (registerData) => async (dispatch) => {
-
   dispatch({
     type: actions.REGISTER_REQUEST,
   });
@@ -23,9 +22,5 @@ export const register = (registerData) => async (dispatch) => {
         },
       });
   }
-  
- 
-  
-
 
 };
