@@ -10,8 +10,7 @@ function Layout(props) {
                 <ListGroup.Item><NavLink to='/products'>product</NavLink></ListGroup.Item>
                 <ListGroup.Item><NavLink to='/orders'>orders</NavLink></ListGroup.Item>
                 <ListGroup.Item><NavLink to='/category'> category</NavLink></ListGroup.Item>
-                <ListGroup.Item><NavLink to='/'> Cras justo odio</NavLink></ListGroup.Item>
-                <ListGroup.Item><NavLink to='/'> Cras justo odio</NavLink></ListGroup.Item>
+ 
               </ListGroup>
             </Col>
             <Col md={9}>

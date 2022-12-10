@@ -15,14 +15,12 @@ function Category() {
     from.append('name', categoryName  )
     from.append( 'parentId', parentCategoryId  )
     from.append( 'categoryImage', categoryImage)
-
     dispatch(addCategory(from))
-    const cat = {
-      categoryName,
-      parentCategoryId,
-      categoryImage
-    }
-    console.log('cat', cat)
+
+    setTimeout(() => {
+       dispatch(getCategories())
+    }, 2000);
+   
 
     setShow(false)
   };
@@ -72,8 +70,8 @@ function Category() {
            <h2>category</h2>
            <Button onClick={handleShow}>add</Button>
            <ul>
-              {categories.categories.categoryList && renderCategories(categories.categories.categoryList)}
-              {categories.categories.categoryList && JSON.stringify(createCategoryList(categories.categories.categoryList))}
+              {categories.categories && categories.categories.categoryList && renderCategories(categories.categories.categoryList)}
+              {categories.categories && categories.categories.categoryList && JSON.stringify(createCategoryList(categories.categories.categoryList))}
            </ul>
            </Col>
           </Row>
@@ -99,7 +97,7 @@ function Category() {
               value={parentCategoryId}
             onChange={(e) => setParentCategoryId(e.target.value)}>
               <option>choose Sub category</option>
-              {categories.categories.categoryList && createCategoryList(categories.categories.categoryList).map((data)=>{
+              {categories.categories && categories.categories.categoryList && createCategoryList(categories.categories.categoryList).map((data)=>{
                 return (
                   <option key={data.id} value={data.value}>{data.name}</option> 
                 )
@@ -123,7 +121,8 @@ function Category() {
             Save Changes
           </Button>
         </Modal.Footer>
-      </Modal></>
+      </Modal>
+      </>
     )
 }
 

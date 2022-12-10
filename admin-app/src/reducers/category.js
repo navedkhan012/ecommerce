@@ -1,27 +1,24 @@
 import * as actions from "../constants/index";
 
-const initState = {
-  categories:[],
-  loading:false
-}
+const initState =  []
 
 
 export const categoryReducer = (state = initState, action) => {
   switch (action.type) {
-    case actions.ADD_CATEGORY_REQUEST:
+    case actions.CATEGORY_REQUEST:
       return {
         ...state,
         loading: true
       }
-
-    case actions.ADD_CATEGORY_SUCCESS:
+      
+    case actions.CATEGORY_SUCCESS:
       return {
         ...state,
         categories: action.payload.categories,
         loading: false
       }
 
-    case actions.ADD_CATEGORY_FAILS:
+    case actions.REGISTER_FAILS:
       return {
         ...state,
         error: action.payload.error,

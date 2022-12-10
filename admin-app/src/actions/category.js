@@ -30,26 +30,28 @@ export const addCategory = (form) => async(dispatch) => {
   dispatch({
     type: actions.ADD_CATEGORY_REQUEST
   })
-  try {
-    const token = localStorage.getItem('token')  
-    const res = await axios.post('http://localhost:2000/api/category', form, {
-      method: 'POST',
-      headers: {
-        authorization: token
-      },
-    })
-    console.log('res.data post', res.data);
-  dispatch({
-    type: actions.ADD_CATEGORY_SUCCESS,
-    payload:{ 
-      categories: res.data
-    }
+  const token = localStorage.getItem('token')  
+  const res = await axios.post('/api/category', form, {
+    method: 'POST',
+    headers: {
+      authorization: token
+    },
   })
+  console.log('token', token)
+  try {
+    console.log('res.data post', res);
+    dispatch({
+      type: actions.ADD_CATEGORY_SUCCESS,
+      payload:{ 
+        category: res.data.category
+      }
+    })
+    console.log('res.data post end');
   } catch (error) {
     dispatch({
       type: actions.ADD_CATEGORY_FAILS,
       payload:{ 
-        error: error
+        category: res.data.category
       }
     })
   }
