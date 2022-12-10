@@ -17,12 +17,12 @@ function Category() {
     from.append( 'categoryImage', categoryImage)
 
     dispatch(addCategory(from))
-    // const cat = {
-    //   categoryName,
-    //   parentCategoryId,
-    //   categoryImage
-    // }
-    // console.log('cat', cat)
+    const cat = {
+      categoryName,
+      parentCategoryId,
+      categoryImage
+    }
+    console.log('cat', cat)
 
     setShow(false)
   };
