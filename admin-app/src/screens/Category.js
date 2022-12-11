@@ -4,6 +4,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { addCategory, getCategories } from "../actions/category";
 import Layout from "./Layout";
 
+
+export const createCategoryList = (categories, options =[]) => {
+
+  for (const category of categories) {
+    options.push({
+      value: category.id,
+      name: category.name
+    })
+    if(category.children.length > 0){
+      createCategoryList(category.children, options)
+    }
+  }
+  return options
+}
+
 function Category() {
   const dispatch = useDispatch();
   const categories = useSelector(state => state.categories)
@@ -29,11 +44,7 @@ function Category() {
   const [parentCategoryId, setParentCategoryId] = useState('');
   const [categoryImage, setCategoryImage] = useState('');
 
-  
 
-  useEffect(()=>{
-    dispatch(getCategories())
-  }, [dispatch])
   
   const renderCategories = (categories) => {
     let categoriesArr = [];
@@ -43,19 +54,7 @@ function Category() {
     return categoriesArr
   }
 
-  const createCategoryList = (categories, options =[]) => {
 
-    for (const category of categories) {
-      options.push({
-        value: category.id,
-        name: category.name
-      })
-      if(category.children.length > 0){
-        createCategoryList(category.children, options)
-      }
-    }
-    return options
-  }
 
   const handleCategoryImage = (e) => {
     setCategoryImage(e.target.files[0])
@@ -67,8 +66,8 @@ function Category() {
       <Container>
           <Row>
             <Col>
-           <h2>category</h2>
-           <Button onClick={handleShow}>add</Button>
+            <h2>category</h2>
+            <Button onClick={handleShow}>add</Button>
            <ul>
               {categories.categories && categories.categories.categoryList && renderCategories(categories.categories.categoryList)}
               {categories.categories && categories.categories.categoryList && JSON.stringify(createCategoryList(categories.categories.categoryList))}

@@ -37,16 +37,13 @@ export const addCategory = (form) => async(dispatch) => {
       authorization: token
     },
   })
-  console.log('token', token)
   try {
-    console.log('res.data post', res);
     dispatch({
       type: actions.ADD_CATEGORY_SUCCESS,
       payload:{ 
         category: res.data.category
       }
     })
-    console.log('res.data post end');
   } catch (error) {
     dispatch({
       type: actions.ADD_CATEGORY_FAILS,

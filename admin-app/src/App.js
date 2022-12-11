@@ -11,6 +11,7 @@ import { isUserLoggedIn } from "./actions/auth";
 import Orders from "./screens/Orders";
 import Products from "./screens/Products";
 import Category from "./screens/Category";
+import { getCategories } from "./actions/category";
 
 // window.store = store;
 const App = () => {
@@ -21,6 +22,10 @@ const App = () => {
       dispatch(isUserLoggedIn())
     }
   }, []);
+
+  useEffect(()=>{
+    dispatch(getCategories())
+  }, [dispatch])
   return (
     <>
       <Router>
