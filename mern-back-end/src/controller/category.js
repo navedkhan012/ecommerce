@@ -4,10 +4,10 @@ const Category = require("../models/category");
 exports.createCategory = (req, res) => {
   const categoryObj = {
     name: req.body.name,
-    slug: slugify(req.body.name)
+    slug: slugify('woman')
   };
 
-  if(req.file.filename){
+  if(req.file && req.file.filename){
     categoryObj.categoryImage = req.file.filename
   }
   if (req.body.parentId) {

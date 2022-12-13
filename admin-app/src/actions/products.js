@@ -13,13 +13,12 @@ export const createProduct = (form) => async(dispatch) =>{
         authorization: token
       },
     })
-    console.log('resresres>>>>>>>', res);
-  // dispatch({
-  //   type: actions.ADD_PRODUCT_SUCCESS,
-  //   payload:{ 
-  //     products: res.data.category
-  //   }
-  // })
+    dispatch({
+      type: actions.ADD_PRODUCT_SUCCESS,
+      payload:{ 
+        products: res.data.category
+      }
+  })
   } catch (error) {
     dispatch({
       type: actions.ADD_PRODUCT_FAILS,
