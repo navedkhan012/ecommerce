@@ -42,3 +42,14 @@ exports.createProduct = (req, res) => {
     }
   });
 };
+
+
+// exports.getProduct = (req, res) => {
+//   Product.find({}).exec((error, products) => {
+//     if (error)
+//       return res.status(400).json({ message: "get category api problem" });
+//     if (products) {
+//       return res.status(200).json({ products });
+//     }
+//   });
+// };

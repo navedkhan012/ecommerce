@@ -1,14 +1,15 @@
-import React, {   useState } from "react";
-import {  Button, Modal, Form } from "react-bootstrap";
+import React, {   useEffect, useState } from "react";
+import {  Button, Modal, Form, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { createProduct } from "../actions/products";
+import { createProduct, getProduct } from "../actions/products";
 import { createCategoryList } from "./Category";
 import Layout from "./Layout";
 function Products() {
   const categories = useSelector(state => state.categories)
+  const products = useSelector(state => state.products)
   const dispatch = useDispatch()
 
-  console.log('categories', categories)
+  console.log('products from state', products.products)
 
   const [name, setName] = useState('');
   const [price, setprice] = useState('');
@@ -32,7 +33,10 @@ function Products() {
     setShow(false)
   };
   const handleShow = () => setShow(true);
-  
+
+  useEffect(()=>{
+    dispatch(getProduct())
+  }, [dispatch])
 
   const handleProductPictures = (e) => {
     setproductPicture([
@@ -48,6 +52,39 @@ function Products() {
     <Layout>
       <h2>products</h2>
       <Button onClick={handleShow}>add</Button>
+
+      <Table striped bordered hover>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>name</th>
+          <th>price</th>
+          <th>qty</th>
+          <th>Des</th>
+          <th>picture</th>
+          <th>cat</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          products.products.map((product, index) => {
+            return (
+<tr>
+          <td>{index + 1}</td>
+          <td>{product.name}</td>
+          <td>{product.price}</td>
+          <td>{product.quantity}</td>
+          <td>{`${product.description.slice(0, 50)}...`}</td>
+          <td>pciture</td>
+          <td>{product.category}</td>
+        </tr>
+            )
+          } )
+        }
+        
+        
+      </tbody>
+    </Table>
     </Layout>
       <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>

@@ -28,10 +28,35 @@ export const productsReducer = (state = initState, action) => {
         error: action.payload.error,
         loading: false
       }
-  
     default:
       return state
   }
 
 }
+
+export const getProductReducer = (state = {}, action) => {
+  switch (action.type) {
+    case actions.GET_PRODUCT_REQUEST:
+      return {
+        ...state,
+        loading: true
+      }
+    case actions.GET_PRODUCT_SUCCESS:
+      return {
+        products: action.payload.products,
+        loading: false
+      }
+    case actions.GET_PRODUCT_FAILS:
+      return {
+        ...state,
+        error: action.payload.error,
+        loading: false
+      }
+    default:
+      return state
+  }
+
+}
+
+
 
