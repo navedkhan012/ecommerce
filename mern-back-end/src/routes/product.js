@@ -27,7 +27,9 @@ router.post(
 );
 router.get("/product/get", async (req, res)=>{
  const categories = await Category.find({})
-  const products = await Product.find({}) 
+  const products = await Product.find({}).populate({
+    path:  'category', select: '_id name'
+  }) 
   res.status(200).json({ 
     products,
     categories
